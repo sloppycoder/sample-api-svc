@@ -1,0 +1,18 @@
+security.oauth2.resource:
+  jwk.key-set-uri: https://myapp.auth0.com/.auth0.com/.well-known/jwks.json
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - info
+          - health
+          - env
+  endpoint:
+    restart:
+      enabled: true
+
+spring:
+  application:
+    name: sample-api-svc

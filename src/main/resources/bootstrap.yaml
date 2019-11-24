@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: sample-api-svc
+  cloud:
+    kubernetes:
+      reload:
+        enabled: true
+      config:
+        sources:
+          - name: ${spring.application.name}
