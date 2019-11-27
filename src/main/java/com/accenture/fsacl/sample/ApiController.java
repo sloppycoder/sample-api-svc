@@ -3,6 +3,7 @@ package com.accenture.fsacl.sample;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
@@ -36,6 +37,11 @@ public class ApiController {
 
     private String getDecodedToken() {
         return AccessTokenUtils.getDecodedJwtToken();
+    }
+
+    @Scheduled(fixedRate = 3000)
+    public void fixedRateSch() {
+        log.info(String.format("Hello. I'm %s with %s", myName, myPass));
     }
 }
 
