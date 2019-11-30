@@ -1,0 +1,15 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: common
+data:
+  custom-my-name: Name From Common Config Map
+
+---
+kind: Secret
+apiVersion: v1
+metadata:
+  name: common-secret
+data:
+  # base64 of "my-super-secret-from"
+  custom-my-pass: bXktc3VwZXItc2VjcmV0LWZyb20K

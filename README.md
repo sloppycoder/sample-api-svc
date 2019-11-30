@@ -24,7 +24,7 @@ Add output of ```minikube ip``` to hosts file,
 ```
 this hostname is referred to various places in the configurations.
 
-### Build and run the service
+### Test with Minikube
 docker, podman are not required for this step
 
 ```shell script
@@ -52,6 +52,34 @@ docker binary is required and currently does not work with podman, thus won't wo
 skaffold dev
 
 # log should come out here...skaffold will automatically rebuild and deploy once the source code is changed
+
+```
+
+### Test with Redhat Code Ready container (4.2.4)
+Follow the minikube step until step mvn build step, at this point the image should be build and exist in local storage. Then proceed to push the same image to docker.io. This step is just a workaround to sidestep the need to setup another registory in Code Ready.
+These steps should be rewritten to not rely on external docker registry.
+
+```shell script
+# podman and docker command are exchangable in this context
+podman login -u <user_id> -p <password> index.docker.io 
+
+# run the following to get image ID for use in the step that pushes the image 
+podman images
+podman push <image id> docker.io/<user_id>/sample-api-svc
+# update the ocp/web.yaml file with image name above
+
+# now run it with CodeReady, developer account does not have the privlege for creating RBAC roles, use admin instead
+oc login -u admin -p <password>  https://api.crc.testing:6443 
+oc apply -f ocp/
+oc expose svc api
+oc get route
+# output similiar to below
+NAME   HOST/PORT                      PATH   SERVICES   PORT   TERMINATION   WILDCARD
+api    api-default.apps-crc.testing          api        http                 None
+
+# try the service from outside 
+curl http://api-default.apps-crc.testing/actuator/info
+# should get some json output here
 
 ```
 
