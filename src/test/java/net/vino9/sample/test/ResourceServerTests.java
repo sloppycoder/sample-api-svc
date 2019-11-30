@@ -1,4 +1,4 @@
-package com.accenture.fsacl.sample.test;
+package net.vino9.sample.test;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

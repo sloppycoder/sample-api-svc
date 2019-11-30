@@ -1,5 +1,4 @@
-package com.accenture.fsacl.sample;
-
+package net.vino9.sample;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,13 +25,12 @@ public class SecurityConfig extends ResourceServerConfigurerAdapter {
         resources.resourceId(audience);
     }
 
-    // default configuration allows anonymous access to actuator endpoints
-    // which may not be a good idea
+    // configuration allows anonymous access to actuator endpoints
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/actuator/**", "/hello").permitAll()
+                .antMatchers("/actuator/**").permitAll()
                 .antMatchers("/**").authenticated()
         ;
     }
