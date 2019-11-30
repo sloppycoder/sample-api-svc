@@ -6,7 +6,7 @@ spec:
   ports:
   - port: 8080
     name: http
-  type: NodePort
+  type: ClusterIP
   selector:
     app: api
 ---
@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - name: web
-        image: gcr.io/k8s-skaffold/skaffold-jib
+        image: localhost:5000/dev/sample-api-svc
         ports:
           - containerPort: 8080
         env:

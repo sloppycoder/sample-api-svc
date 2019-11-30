@@ -11,7 +11,9 @@
         <relativePath/>
     </parent>
 
+    <groupId>net.vino9</groupId>
     <artifactId>sample-api-svc</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
     <description>Reference implementation of an API resource server</description>
 
     <properties>
@@ -19,9 +21,15 @@
         <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
         <chao-monkey.version>2.1.1</chao-monkey.version>
         <jib-maven-plugin.version>1.8.0</jib-maven-plugin.version>
+        <!--
+          to use a custom base image as java run time, override the follow property
+        -->
+        <!-- java11 use digest for reproducible -->
+        <base-image>gcr.io/distroless/java@sha256:f9fe0de7f8ded68f757d99e9d165b96e89e00d4cef80d204aa76bc0b8ffc4576</base-image>
+        <private-docker-registry-url>minikube.local:5000</private-docker-registry-url>
     </properties>
 
-  <dependencyManagement>
+    <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -144,33 +152,35 @@
         </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>com.google.cloud.tools</groupId>
-                <artifactId>jib-maven-plugin</artifactId>
-                <version>${jib-maven-plugin.version}</version>
-                <configuration>
-                    <to>
-                        <image>registry/sample-api-svc</image>
-                    </to>
-                    <container>
-                        <jvmFlags>
-                            <jvmFlag>-ms512m</jvmFlag>
-                        </jvmFlags>    
-                    </container>
-                    <!--
-                        uncomment the following in order to run the build on Openshift,
-                        which uses podman instead of docker daemon on nodes
-                    -->
-                    <!--
-                    <dockerClient>
-                        <executable>/usr/bin/podman</executable>
-                    </dockerClient>
-                    -->
-                  </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
+    <profiles>
+        <profile>
+            <id>jib-build</id>
+            <properties>
+                <maven.test.skip>true</maven.test.skip>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.google.cloud.tools</groupId>
+                        <artifactId>jib-maven-plugin</artifactId>
+                        <version>${jib-maven-plugin.version}</version>
+                        <configuration>
+                            <allowInsecureRegistries>true</allowInsecureRegistries>
+                            <from>
+                                <image>${base-image}</image>
+                            </from>
+                            <to>
+                                <image>${private-docker-registry-url}/dev/sample-api-svc</image>
+                            </to>
+                            <container>
+                                <jvmFlags>
+                                    <jvmFlag>-ms512m</jvmFlag>
+                                </jvmFlags>
+                            </container>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

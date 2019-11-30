@@ -2,8 +2,9 @@ apiVersion: skaffold/v1
 kind: Config
 build:
   artifacts:
-  - image: gcr.io/k8s-skaffold/skaffold-jib
+  - image: localhost:5000/dev/sample-api-svc
     jib:
       args:
         - -DskipTests
+        - -Pjib-build
 
