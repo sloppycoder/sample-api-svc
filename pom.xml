@@ -24,7 +24,7 @@
         <!--
           to use a custom base image as java run time, override the follow property
         -->
-        <!-- java11 use digest for reproducible -->
+        <!--        <base-image>minikube.local:5000/ubi8-java11:v1</base-image>-->
         <base-image>gcr.io/distroless/java@sha256:f9fe0de7f8ded68f757d99e9d165b96e89e00d4cef80d204aa76bc0b8ffc4576</base-image>
         <private-docker-registry-url>minikube.local:5000</private-docker-registry-url>
     </properties>

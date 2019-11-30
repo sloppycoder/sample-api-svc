@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# this script uses buildah and podman, but it should also work with docker
+# just replace reference to buildah and podman with docker
+
+# username and password for registry.redhat.io is required to pull UBI base image
+buildah login -u guru.lin@gmail.com -p tb946060 https://registry.redhat.io
+
+# build
+buildah build-using-dockerfile -t minikube.local:5000/ubi8-java11:v1 .
+podman push minikube.local:5000/ubi8-java11:v1
+
