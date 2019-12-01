@@ -16,3 +16,8 @@ management:
 spring:
   application:
     name: sample-api-svc
+  cache:
+    type: redis
+  redis:
+    host: 127.0.0.1
+    port: 6379
