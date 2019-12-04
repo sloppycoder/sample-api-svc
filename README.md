@@ -9,7 +9,8 @@
 * Use [Skaffold](https://skaffold.dev/) to automate build and deployment for development cycles
 
 ### Prerequisites
-Install (minikube)[https://minikube.sigs.k8s.io/], and have docker binary available locally. Docker binary is only required for skaffold and does not require the docker daemon to be running. Then enable to private registry
+Install (Minikube)[https://minikube.sigs.k8s.io/], and have docker binary available locally. The default configuration uses docker but use podman also works. 
+Then enable to private registry
 
 ```shell script
 minikube addons enable registry
@@ -22,7 +23,18 @@ Add output of ```minikube ip``` to hosts file,
 192.168.39.142 minikube minikube.local
 
 ```
+
+Add the following to /etc/hosts inside the *Minikube VM*
+
+```shell script
+minikube ssh
+sudo -s
+
+echo '127.0.0.1 minikube.local' >> /etc/hosts
+```
+
 this hostname is referred to various places in the configurations.
+
 
 ### Test with Minikube
 docker, podman are not required for this step
@@ -46,7 +58,15 @@ net.vino9.sample.ApiController           : my name is Name From Common Config Ma
 ```
 
 ### Even simpler workflow with Skaffold
-docker binary is required and currently does not work with podman, thus won't work with Redhat Openshift 4.x
+If the Minikube is configured to use podman instead of docker, add ```'minikube.local'``` to ```/etc/containers/registries.conf``` file under the ```[registries.insecure]``` section inside the *Minikube VM*. The result should look like this
+```text
+[registries.insecure]
+registries = ['localhost:5000', 'minikube.local:5000']
+
+```
+
+
+docker binary is not so this it should work with Redhat Openshift 4.x but I haven't tested it yet.
 
 ```shell script
 skaffold dev
@@ -56,7 +76,7 @@ skaffold dev
 ```
 
 ### Test with Redhat Code Ready container (4.2.4)
-Follow the minikube step until step mvn build step, at this point the image should be build and exist in local storage. Then proceed to push the same image to docker.io. This step is just a workaround to sidestep the need to setup another registory in Code Ready.
+Follow the Minikube step until step mvn build step, at this point the image should be build and exist in local storage. Then proceed to push the same image to docker.io. This step is just a workaround to sidestep the need to setup another registory in Code Ready.
 These steps should be rewritten to not rely on external docker registry.
 
 ```shell script

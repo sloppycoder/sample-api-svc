@@ -2,7 +2,7 @@ apiVersion: skaffold/v1
 kind: Config
 build:
   artifacts:
-  - image: localhost:5000/dev/sample-api-svc
+  - image: minikube.local:5000/dev/sample-api-svc
     jib:
       args:
         - -DskipTests

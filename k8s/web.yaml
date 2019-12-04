@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - name: web
-        image: localhost:5000/dev/sample-api-svc
+        image: minikube.local:5000/dev/sample-api-svc
         ports:
           - containerPort: 8080
         env:
