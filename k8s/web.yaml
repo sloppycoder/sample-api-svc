@@ -29,6 +29,8 @@ spec:
         ports:
           - containerPort: 8080
         env:
+          - name: SPRING_DATASOURCE_PASSWORD
+            value: from_k8s_manifest_not_conjur
           - name: CUSTOM_MY_NAME
             valueFrom:
               configMapKeyRef:

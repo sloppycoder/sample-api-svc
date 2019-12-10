@@ -6,5 +6,5 @@ build:
     jib:
       args:
         - -DskipTests
-        - -Pjib-build
+        - -Pjib
 

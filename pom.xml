@@ -162,11 +162,9 @@
 
     <profiles>
         <profile>
-            <id>jib-build</id>
-            <properties>
-                <maven.test.skip>true</maven.test.skip>
-            </properties>
+            <id>jib</id>
             <build>
+                <defaultGoal>clean compile jib:build</defaultGoal>
                 <plugins>
                     <plugin>
                         <groupId>com.google.cloud.tools</groupId>
