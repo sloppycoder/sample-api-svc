@@ -1,6 +1,6 @@
 package net.vino9.sample.test;
 
-import net.vino9.sample.MessageRepository;
+import net.vino9.sample.MessageResource;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,7 +9,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
-import org.springframework.cache.support.SimpleValueWrapper;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -25,7 +24,7 @@ public class ResourceServerTests {
     MockMvc mockMvc;
 
     @Autowired
-    MessageRepository repo;
+    MessageResource repo;
 
     @Autowired
     private CacheManager cacheManager;

@@ -16,3 +16,12 @@ management:
 spring:
   application:
     name: sample-api-svc
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+  datasource:
+      url: jdbc:h2:mem:dummydb
+      username: none
+      password: none
+

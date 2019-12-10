@@ -25,6 +25,10 @@ public class ApiController {
     @Value("${custom.my-password:none}")
     String myPass;
 
+    //  this will be override by env var SPRING_DATASOURCE_PASSWORD
+    @Value("${spring.datasource.password}")
+    String dbPassword;
+
     @RequestMapping("/whoami")
     public String decipherAccessToken() {
         return getDecodedToken();
@@ -36,6 +40,8 @@ public class ApiController {
 
     @Scheduled(fixedRate = 3000)
     public void fixedRateSch() {
-        log.info(String.format("my name is %s, my pass is %s", myName, myPass));
+        log.info("my name is {}, my pass is {}", myName, myPass);
+        log.info(" database password is {}", dbPassword);
+
     }
 }

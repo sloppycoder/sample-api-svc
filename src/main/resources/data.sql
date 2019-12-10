@@ -1,0 +1,1 @@
+insert into message(id, content) values ('10001', 'Hello');
