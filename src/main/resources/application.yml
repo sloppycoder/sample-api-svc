@@ -16,7 +16,11 @@ management:
 spring:
   application:
     name: sample-api-svc
-  jpa:
+  cloud:
+    config:
+      allow-override: true
+      override-system-properties: false
+   jpa:
     show-sql: true
     hibernate:
       ddl-auto: create
