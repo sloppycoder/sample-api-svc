@@ -20,7 +20,7 @@ spring:
     config:
       allow-override: true
       override-system-properties: false
-   jpa:
+  jpa:
     show-sql: true
     hibernate:
       ddl-auto: create
