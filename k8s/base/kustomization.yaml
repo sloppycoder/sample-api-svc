@@ -1,0 +1,6 @@
+resources:
+- web.yaml
+- ingress.yaml
+- role.yaml
+- common.yaml
+
