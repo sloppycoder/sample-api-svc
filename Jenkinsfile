@@ -1,3 +1,5 @@
+#!groovy
+
 node {
     stage('Clone sources') {
         git url: 'https://github.com/sloppycoder/sample-api-svc.git', branch:simplify
