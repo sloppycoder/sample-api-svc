@@ -1,5 +1,7 @@
 security.oauth2.resource:
-  jwk.key-set-uri: https://myapp.auth0.com/.auth0.com/.well-known/jwks.json
+  jwk.key-set-uri: classpath:jwks.json
+  # a better solution is retrieve key set on-the-fly
+  # jwk.key-set-uri: https://acnbank.auth0.com/.auth0.com/.well-known/jwks.json
 
 management:
   endpoints:
