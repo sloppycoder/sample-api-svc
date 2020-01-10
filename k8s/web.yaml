@@ -9,6 +9,7 @@ spec:
   type: ClusterIP
   selector:
     app: api
+
 ---
 apiVersion: apps/v1
 kind: Deployment

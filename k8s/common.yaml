@@ -1,3 +1,19 @@
+#
+# the objects in this file should be created in each namespace once
+# and should not be in source repo for reach microservice.
+#
+# the configmap and secrets in this file should be contain environment specific
+# settings, e.g.
+#    URL for common backend service
+#    URL to shared databases
+#    username and password for services specific to the environment.
+# etc.
+#
+# when using an external secret store like Hashi Vault or CyberArk Conjur,
+# credentials can be stored in those services and the secret objects can
+# be deleted
+#
+
 kind: ConfigMap
 apiVersion: v1
 metadata:
