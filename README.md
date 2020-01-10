@@ -1,6 +1,8 @@
-## Sample REST API microservice using Spring Boot
+# Sample REST API microservice using Spring Boot
 
 This repo can be used as reference to developing Spring Boot based microservices under Kubernetes container environment, which address the following concerns in a project:
+
+## Technical Highlights
 
 ### developer workflow
 Developer should be able to
@@ -16,8 +18,10 @@ Developer should be able to
 ### product ready  
 * Reads configuration from K8S config map and reload automatically once the config map is changed
 * Use to verify JWT token and control access to methods in controllers
-* Use  to compile service for faster build and app startup time
-* Use custom base image with Jib, e.g. Redhat Universal Image
+
+### misc
+* Build [base container image](ubi/)  image using [Redhat Universal Base Image, aka UBI](https://www.redhat.com/en/blog/introducing-red-hat-universal-base-image)
+
 
 ### Prerequisites
 Install (Minikube)[https://minikube.sigs.k8s.io/], and have docker binary available locally. The default configuration uses docker but use podman also works. 
