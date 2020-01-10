@@ -16,12 +16,11 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 @Slf4j
 public class SecurityConfig extends ResourceServerConfigurerAdapter {
 
-    @Value("${api.resource.audience:https://fsacl.acn.dev/api}")
+    @Value("${api.resource.audience}")
     String audience;
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) {
-        log.info("==> api.resource.audience is {}", audience);
         resources.resourceId(audience);
     }
 

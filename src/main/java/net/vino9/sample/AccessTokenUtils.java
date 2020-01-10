@@ -38,7 +38,7 @@ class AccessTokenUtils {
     public static String getUser() {
         String token = getDecodedJwtToken();
         if (token != null) {
-            return "dummy123";
+            return "none";
         }
         return null;
     }

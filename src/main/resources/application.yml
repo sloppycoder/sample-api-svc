@@ -31,3 +31,4 @@ spring:
       username: none
       password: none
 
+api.resource.audience: https://gate.acn.dev/acn-api
