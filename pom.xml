@@ -147,9 +147,9 @@
                             </from>
                             <container>
                                 <jvmFlags>
-                                    <jvmFlag>-mx512m -XX:+ExitOnOutOfMemoryError
-                                        -Djava.security.egd=file:/dev/./urandom
-                                    </jvmFlag>
+                                    <jvmFlag>-mx512m</jvmFlag>
+                                    <jvmFlag>-XX:+ExitOnOutOfMemoryError</jvmFlag>
+                                    <jvmFlag>-Djava.security.egd=file:/dev/./urandom</jvmFlag>
                                 </jvmFlags>
                             </container>
                         </configuration>
