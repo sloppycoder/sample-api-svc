@@ -19,4 +19,4 @@ spring:
       override-system-properties: false
 
 custom:
-  config: config-map-val
+  config: config-map-val-2
