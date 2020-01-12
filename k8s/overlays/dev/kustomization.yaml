@@ -1,0 +1,10 @@
+bases:
+- ../../base
+
+namespace: "default"
+
+images:
+- name: minikube.local:5000/dev/sample-api-svc
+  newName: minikube.local:5000/dev/sample-api-svc
+  newTag: dev
+

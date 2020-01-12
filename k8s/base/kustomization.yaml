@@ -1,0 +1,11 @@
+resources:
+- web.yaml
+- ingress.yaml
+- role.yaml
+
+# config map for spring-cloud-kubernetes
+configMapGenerator:
+  - name: sample-api-svc
+    behavior: create
+    files:
+      - application.yml

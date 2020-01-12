@@ -1,0 +1,13 @@
+apiVersion: skaffold/v1
+kind: Config
+build:
+  artifacts:
+  - image: minikube.local:5000/dev/sample-api-svc
+    jib:
+      args:
+        - -DskipTests
+        - -Pjib
+
+deploy:
+  kustomize:
+    path: "./k8s/overlays/dev"
