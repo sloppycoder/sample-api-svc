@@ -1,0 +1,22 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - info
+          - health
+          - env
+  endpoint:
+    restart:
+      enabled: true
+
+spring:
+  application:
+    name: sample-api-svc
+  cloud:
+    config:
+      allow-override: true
+      override-system-properties: false
+
+custom:
+  config: config-map-val

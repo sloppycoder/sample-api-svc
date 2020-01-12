@@ -9,8 +9,5 @@ build:
         - -Pjib
 
 deploy:
-  kubectl:
-    manifests:
-      - k8s/base/role.yaml
-      - k8s/base/web.yaml
-      - k8s/base/ingress.yaml
+  kustomize:
+    path: "./k8s/overlays/dev"
