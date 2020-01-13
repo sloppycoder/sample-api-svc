@@ -155,7 +155,10 @@
                                 <tags>
                                     <tag>${project.version}</tag>
                                     <tag>${push.image.tag}</tag>
-                                    <!-- TODO: add more tag with git hash, to provide binary to source code traceability -->
+                                    <!-- TODO:
+                                    add more tag with git hash,
+                                    to provide binary to source code traceability
+                                    -->
                                 </tags>
                             </to>
                             <container>
