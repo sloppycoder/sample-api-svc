@@ -26,6 +26,7 @@ spec:
     spec:
       containers:
       - name: sample-api
-        image: minikube.local:5000/dev/sample-api-svc
+        image: localhost:32000/dev/sample-api-svc
         ports:
           - containerPort: 8080
+        imagePullPolicy: IfNotPresent
