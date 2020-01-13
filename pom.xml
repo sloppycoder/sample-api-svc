@@ -21,15 +21,20 @@
         <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
         <chao-monkey.version>2.1.1</chao-monkey.version>
         <jib-maven-plugin.version>1.8.0</jib-maven-plugin.version>
+
+
         <!--
           to use a custom base image as java run time, override the follow property
         -->
         <!--
-        <private-docker-registry-url>minikube.local:5000</private-docker-registry-url>
-        <base-image>minikube.local:5000/ubi8-java11:v1</base-image>
+        <base-image>localhost:32000/ubi8-java11:v1</base-image>
         -->
-
         <base-image>gcr.io/distroless/java:11</base-image>
+
+        <!-- define private registry, name and tag for pushing built image -->
+        <push.image.base>localhost:32000/dev</push.image.base>
+        <push.image.name>${push.image.base}/${project.artifactId}</push.image.name>
+        <push.image.tag>dev</push.image.tag>
 
     </properties>
 
@@ -134,7 +139,7 @@
         <profile>
             <id>jib</id>
             <build>
-                <defaultGoal>clean compile jib:buildTar</defaultGoal>
+                <defaultGoal>clean compile jib:build</defaultGoal>
                 <plugins>
                     <plugin>
                         <groupId>com.google.cloud.tools</groupId>
@@ -145,6 +150,17 @@
                             <from>
                                 <image>${base-image}</image>
                             </from>
+                            <to>
+                                <image>${push.image.name}</image>
+                                <tags>
+                                    <tag>${project.version}</tag>
+                                    <tag>${push.image.tag}</tag>
+                                    <!-- TODO:
+                                    add more tag with git hash,
+                                    to provide binary to source code traceability
+                                    -->
+                                </tags>
+                            </to>
                             <container>
                                 <jvmFlags>
                                     <jvmFlag>-mx512m</jvmFlag>
