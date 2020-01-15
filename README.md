@@ -48,5 +48,3 @@ minikube addons enable registry
 
 more instructions coming soon.
 
-i'm doing demo2, again
-
