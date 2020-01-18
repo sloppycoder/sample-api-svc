@@ -29,4 +29,4 @@ spec:
         image: localhost:32000/dev/sample-api-svc
         ports:
           - containerPort: 8080
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
