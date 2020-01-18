@@ -48,5 +48,4 @@ minikube addons enable registry
 
 more instructions coming soon.
 
-testing push on feature branch, hopefully it won't push the image
 
