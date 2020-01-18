@@ -46,6 +46,6 @@ Then enable to private registry
 minikube addons enable registry
 ```
 
-more instructions coming soon.
+more instructions coming soon...
 
 
