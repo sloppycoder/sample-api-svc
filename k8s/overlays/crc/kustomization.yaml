@@ -1,0 +1,17 @@
+bases:
+- ../../base
+
+namespace: "default"
+
+images:
+- name: localhost:32000/dev/sample-api-svc
+  newName: image-registry.openshift-image-registry.svc:5000/default/sample-api-svc
+  newTag: dev
+
+patchesJson6902:
+- target:
+    group: networking.k8s.io
+    version: v1beta1
+    kind: Ingress
+    name: sample-api
+  path: ingress_patch.yaml

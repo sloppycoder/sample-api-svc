@@ -49,3 +49,25 @@ minikube addons enable registry
 more instructions coming soon...
 
 
+### use [Redhat CodeReady Container](https://developers.redhat.com/products/codeready-containers/overview) for local development
+
+By default the built-in registry is enabled, and accessible from ```image-registry.openshift-image-registry.svc:5000``` from within the cluster, and ```default-route-openshift-image-registry.apps-crc.testing``` from outside, so the deployment yaml files needs to be adjusted.
+
+skaffold is not yet working.
+
+```
+# login to CRC and get token 
+oc login -u <user> -p <password> https://api.crc.testing:6443   
+oc whoami -t
+
+# the above command will print out a token, which will be used as password to container registry
+mvn -P jib -Dpush.image.base=default-route-openshift-image-registry.apps-crc.testing/default -Djib.auth.to.username=kubeadmin -Djib.auth.to.password=<token>
+
+oc apply -k k8s/overlays/crc
+
+# test the api, should get some response
+curl http://sample-svc-default.apps-crc.testing
+
+
+```
+

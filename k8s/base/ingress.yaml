@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: sample-api-ingress
+  name: sample-api
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
@@ -12,3 +12,6 @@ spec:
             backend:
               serviceName: sample-api
               servicePort: 8080
+      # host parameter is required for use default haproxy 
+      # ingress controller in opneshift
+      # host: sample-api-default.apps-crc.testing
