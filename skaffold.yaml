@@ -9,7 +9,6 @@ build:
       args:
         - -DskipTests
         - -Pjib
-  insecureRegistries: ["default-route-openshift-image-registry.apps-crc.testing"]
 
 deploy:
   kustomize:
