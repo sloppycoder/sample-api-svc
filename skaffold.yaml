@@ -2,12 +2,17 @@ apiVersion: skaffold/v1
 kind: Config
 build:
   artifacts:
-  - image: localhost:32000/dev/sample-api-svc
+  - # image: localhost:32000/dev/sample-api-svc
+    # uncomment the line below for running in CRC 
+    image: default-route-openshift-image-registry.apps-crc.testing/default/sample-api-svc
     jib:
       args:
         - -DskipTests
         - -Pjib
+  insecureRegistries: ["default-route-openshift-image-registry.apps-crc.testing"]
 
 deploy:
   kustomize:
-    path: "./k8s/overlays/dev"
+    # path: "./k8s/overlays/dev"
+    # uncomment the line below for running in CRC 
+    path: "./k8s/overlays/crc"
