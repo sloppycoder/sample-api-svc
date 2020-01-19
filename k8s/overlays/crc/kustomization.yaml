@@ -4,7 +4,7 @@ bases:
 namespace: "default"
 
 images:
-- name: localhost:32000/dev/sample-api-svc
+- name: default-route-openshift-image-registry.apps-crc.testing/default/sample-api-svc
   newName: image-registry.openshift-image-registry.svc:5000/default/sample-api-svc
   newTag: dev
 
