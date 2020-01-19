@@ -5,6 +5,6 @@ namespace: "default"
 
 images:
 - name: localhost:32000/dev/sample-api-svc
-  newName: localhost:8100/dev/sample-api-svc
+  newName: localhost:32000/dev/sample-api-svc
   newTag: dev
 
