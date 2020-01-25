@@ -53,7 +53,7 @@ more instructions coming soon...
 
 By default the built-in registry is enabled, and accessible from ```image-registry.openshift-image-registry.svc:5000``` from within the cluster, and ```default-route-openshift-image-registry.apps-crc.testing``` from outside, so the deployment yaml files needs to be adjusted.
 
-skaffold is not yet working.
+skaffold is not yet working. see [this github issue](https://github.com/GoogleContainerTools/skaffold/issues/3530)
 
 ```
 # login to CRC and get token 
@@ -61,13 +61,17 @@ oc login -u <user> -p <password> https://api.crc.testing:6443
 oc whoami -t
 
 # the above command will print out a token, which will be used as password to container registry
-mvn -P jib -Dpush.image.base=default-route-openshift-image-registry.apps-crc.testing/default -Djib.auth.to.username=kubeadmin -Djib.auth.to.password=<token>
-
+mvn -P jib -Dpush.image.base=default-route-openshift-image-registry.apps-crc.testing/default -Djib.auth.to.username=kubeadmin -Djib.auth.to.password=<toke
 oc apply -k k8s/overlays/crc
 
 # test the api, should get some response
 curl http://sample-svc-default.apps-crc.testing
 
+# if you have ~/.docker/config.json file, meaning you have a docker client, 
+# the above -Djib.auth will not work, do a docker login instead
+
+oc login -u <your_user_name> -p <your_password>  https://api.crc.testing:6443
+oc whoami -t | docker login -u <your_user_name> --password-stdin  https://default-route-openshift-image-registry.apps-crc.testing
 
 ```
 
